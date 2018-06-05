@@ -65,12 +65,12 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.string "name"
+    t.string "firstName"
+    t.string "lastName"
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_teachers_on_name"
   end
 
   add_foreign_key "assignments", "classrooms"
