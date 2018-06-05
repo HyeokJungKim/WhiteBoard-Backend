@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
+    t.string "password_digest"
     t.bigint "teacher_id"
     t.bigint "student_id"
     t.datetime "created_at", null: false
@@ -56,6 +57,9 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
     t.string "firstName"
     t.string "lastName"
     t.string "avatar"
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "is_account", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
