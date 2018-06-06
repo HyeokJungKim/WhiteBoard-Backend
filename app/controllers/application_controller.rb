@@ -5,7 +5,8 @@ class ApplicationController < ActionController::API
       username: user.username,
       classrooms: user.classrooms,
       assignments: user.assignments,
-      token: createToken(user.id)
+      token: createToken(user.id),
+      name: "#{user.firstName} " + "#{user.lastName}"
     }
   end
 
