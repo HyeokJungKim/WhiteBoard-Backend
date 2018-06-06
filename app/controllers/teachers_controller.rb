@@ -1,6 +1,5 @@
 class TeachersController < ApplicationController
   def create
-    byebug
     @teacher = Teacher.new(teacher_params)
     if(@teacher.save)
       render json: tokenForAccount(@teacher)

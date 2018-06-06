@@ -1,4 +1,4 @@
-Teacher.create(name:"Test", username: "Test", password:"123")
+Teacher.create(firstName:"Test", lastName:"TEST", username: "Test", password:"123")
 Student.create(firstName:Faker::Name.first_name, lastName:Faker::Name.last_name)
 Classroom.create(name:Faker::Hipster.word, student_id: 1, teacher_id: 1, password:"123")
 Schedule.create(student_id: 1, classroom_id: 1)

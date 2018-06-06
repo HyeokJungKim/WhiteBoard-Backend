@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::API
 
   def tokenForAccount(user)
-    {
-      id: user.id,
+    { id: user.id,
       username: user.username,
+      classrooms: user.classrooms,
+      assignments: user.assignments,
       token: createToken(user.id)
     }
   end

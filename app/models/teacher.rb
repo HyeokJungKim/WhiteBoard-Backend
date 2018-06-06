@@ -5,7 +5,8 @@ class Teacher < ApplicationRecord
   has_many :students, through: :classrooms
   has_many :assignments, through: :classrooms
 
-  validates :name, presence: true
+  validates :firstName, presence: true
+  validates :lastName, presence: true
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true
 
