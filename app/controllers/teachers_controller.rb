@@ -22,9 +22,13 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find(params[:id])
     if(authorized?(@teacher))
       @classrooms = @teacher.classrooms
-      @assignments = @teacher.assignments
-      @safeClassRooms = @classrooms.to_json(only: [:id,:name])
-      render json: {classrooms: JSON.parse(@safeClassRooms), assignments: @assignments}
+      @students = @classrooms.map {|classroom| classroom.students}
+      @classrooms = JSON.parse(@classrooms.to_json(only: [:id,:name], :include => [:assignments]))
+      @students = JSON.parse(@students.to_json(only: [:id, :firstName, :lastName], :include => [:grades]))
+      @classrooms.each_with_index do |classroom, index|
+        classroom[:students] = @students[index]
+      end
+      render json:{classrooms: @classrooms}
     else
       render json: {errors: "You do not have access to view this page."}
     end
