@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :teachers, only: [:create]
   resources :students, only: [:create]
+  resources :classrooms, only: [:create]
 
-  get'/classrooms/teacher/:id', to: 'classrooms#classAndAssignmentsForTeacher'
+  get'/teachers/:id/classrooms', to: 'teachers#classesAndAssignments'
+
+  get'/classrooms/:id/students', to: 'classrooms#students'
   post '/teacherLogin', to: 'teachers#login'
 end

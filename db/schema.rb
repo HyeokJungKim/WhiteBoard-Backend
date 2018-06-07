@@ -27,10 +27,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
     t.string "name"
     t.string "password_digest"
     t.bigint "teacher_id"
-    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_classrooms_on_student_id"
     t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
   end
 
@@ -74,7 +72,6 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
   end
 
   add_foreign_key "assignments", "classrooms"
-  add_foreign_key "classrooms", "students"
   add_foreign_key "classrooms", "teachers"
   add_foreign_key "grades", "assignments"
   add_foreign_key "grades", "students"

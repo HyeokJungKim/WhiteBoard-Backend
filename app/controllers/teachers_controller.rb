@@ -18,6 +18,18 @@ class TeachersController < ApplicationController
     end
   end
 
+  def classesAndAssignments
+    @teacher = Teacher.find(params[:id])
+    if(authorized?(@teacher))
+      @classrooms = @teacher.classrooms
+      @assignments = @teacher.assignments
+      @safeClassRooms = @classrooms.to_json(only: [:id,:name])
+      render json: {classrooms: JSON.parse(@safeClassRooms), assignments: @assignments}
+    else
+      render json: {errors: "You do not have access to view this page."}
+    end
+  end
+
   private
   def teacher_params
     params.permit(:firstName, :lastName ,:username, :password)
