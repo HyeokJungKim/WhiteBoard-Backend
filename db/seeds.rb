@@ -16,3 +16,7 @@ Schedule.create(student_id: 5, classroom_id: 1)
 
 Assignment.create(description: Faker::Hipster.sentence, classroom_id:1)
 Grade.create(grade: 100, student_id: 1, assignment_id: 1)
+Grade.create(grade: 40, student_id: 2, assignment_id: 1)
+Grade.create(grade: 50, student_id: 3, assignment_id: 1)
+Grade.create(grade: 20, student_id: 4, assignment_id: 1)
+Grade.create(grade: 80, student_id: 5, assignment_id: 1)
