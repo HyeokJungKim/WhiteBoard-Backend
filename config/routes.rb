@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :teachers, only: [:create]
+  resources :teachers, only: [:show, :create]
   resources :students, only: [:create]
   resources :classrooms, only: [:create]
 
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/studentLogin', to: 'students#login'
 
 
-  get'/teachers/:id/classrooms', to: 'teachers#classesAndAssignments'
-  
-  get'/classrooms/:id/students', to: 'classrooms#students'
+  get '/teachers/:id/classrooms', to: 'teachers#classesAndAssignments'
+  get '/students/:id/classrooms', to: 'students#classesAndAssignments'
+  get '/classrooms/:id/students', to: 'classrooms#students'
 end

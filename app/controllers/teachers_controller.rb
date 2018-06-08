@@ -1,5 +1,14 @@
 class TeachersController < ApplicationController
 
+  def show
+    @teacher = Teacher.find(params[:id])
+    if(@teacher && authorized?(@teacher))
+      render json: {isTeacher: true}
+    else
+      render json: {isTeacher: false}
+    end
+  end
+
   def create
     @teacher = Teacher.new(teacher_params)
     if(@teacher.save)
