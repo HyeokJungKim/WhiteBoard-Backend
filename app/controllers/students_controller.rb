@@ -20,21 +20,6 @@ class StudentsController < ApplicationController
   def classesAndAssignments
     @student = Student.find(params[:id])
     if(authorized?(@student))
-      # @classrooms = @student.classrooms
-      # byebug
-      # @grades = @classrooms.map{|classroom| classroom.assignments}
-      # @teachers = JSON.parse(@classrooms.map{|classroom| classroom.teacher}.to_json(only: [:id, :firstName, :lastName]))
-
-      # @teachers = JSON.parse(@teachers.to_json(only: [:id, :firstName, :lastName], :include => [:grades]))
-      # @teachers.each do |teachers|
-      #   teachers.each do|teacher|
-      #     teacher["grades"].sort_by{|grade| grade["assignment_id"]}
-      #   end
-      # end
-      # @classrooms.each_with_index do |classroom, index|
-      #   classroom["teachers"] = @teachers[index]
-      #   classroom["assignments"].sort_by{|assignment| assignment["id"]}
-      # end
       render json: @student, include: '**', scope: {'student': true}
     else
       render json: {errors: "You do not have access to view this page."}
