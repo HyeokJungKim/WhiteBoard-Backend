@@ -5,13 +5,13 @@ class ApplicationController < ActionController::API
       username: user.username,
       classrooms: user.classrooms,
       assignments: user.assignments,
-      token: createToken(user.id),
+      token: createToken(user),
       name: "#{user.firstName} " + "#{user.lastName}"
     }
   end
 
-  def createToken(user_id)
-    JWT.encode({'id': user_id}, password, 'HS256')
+  def createToken(user)
+    JWT.encode({'id': user.id, 'class': user.class.name}, password, 'HS256')
   end
 
   def password
@@ -30,14 +30,25 @@ class ApplicationController < ActionController::API
 
   def getIdFromToken
     decoded = decodeToken
-
     unless decoded && decoded[0] && decoded[0]['id']
       return nil
     end
     decoded[0]['id']
   end
 
+  def getClassFromToken
+    decoded = decodeToken
+    unless decoded && decoded [0] && decoded [0]['class']
+      return nil
+    end
+    decoded[0]['class']
+  end
+
   def authorized?(user)
     getIdFromToken == user.id
+  end
+
+  def isTeacher?
+    getClassFromToken == "Teacher"
   end
 end

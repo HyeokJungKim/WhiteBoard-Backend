@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Teacher.find(params[:id])
-    if(@teacher && authorized?(@teacher))
+    if(@teacher && isTeacher?)
       render json: {isTeacher: true}
     else
       render json: {isTeacher: false}
@@ -31,20 +31,21 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find(params[:id])
     if(authorized?(@teacher))
 
-      @classrooms = @teacher.classrooms
-      @students = @classrooms.map {|classroom| classroom.students}
-      @classrooms = JSON.parse(@classrooms.to_json(only: [:id,:name], :include => [:assignments]))
-      @students = JSON.parse(@students.to_json(only: [:id, :firstName, :lastName], :include => [:grades]))
-      @students.each do |students|
-        students.each do|student|
-          student["grades"].sort_by{|grade| grade["assignment_id"]}
-        end
-      end
-      @classrooms.each_with_index do |classroom, index|
-        classroom["students"] = @students[index]
-        classroom["assignments"].sort_by{|assignment| assignment["id"]}
-      end
-      render json:{classrooms: @classrooms}
+      # @classrooms = @teacher.classrooms
+      # @students = @classrooms.map {|classroom| classroom.students}
+      # @classrooms = JSON.parse(@classrooms.to_json(only: [:id,:name], :include => [:assignments]))
+      # @students = JSON.parse(@students.to_json(only: [:id, :firstName, :lastName], :include => [:grades]))
+      # @students.each do |students|
+      #   students.each do|student|
+      #     student["grades"].sort_by{|grade| grade["assignment_id"]}
+      #   end
+      # end
+      # @classrooms.each_with_index do |classroom, index|
+      #   classroom["students"] = @students[index]
+      #   classroom["assignments"].sort_by{|assignment| assignment["id"]}
+      # end
+      # render json: {classrooms: @classrooms}
+      render json: @teacher, include: '**'
     else
       render json: {errors: "You do not have access to view this page."}
     end

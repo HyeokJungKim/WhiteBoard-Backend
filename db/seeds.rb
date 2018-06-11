@@ -1,5 +1,5 @@
-Teacher.create(firstName:"Test", lastName:"TEST", username: "Test", password:"123")
-
+Teacher.create(firstName:"Test", lastName:"Test", username: "1", password:"1")
+Student.create(firstName: "Abc", lastName: "Def", username:"1", password:"1")
 5.times do
   Student.create(firstName:Faker::Name.first_name, lastName:Faker::Name.last_name)
 end
@@ -9,9 +9,9 @@ end
 end
 
 Schedule.create(student_id: 1, classroom_id: 1)
+Schedule.create(student_id: 1, classroom_id: 2)
+Schedule.create(student_id: 1, classroom_id: 3)
 Schedule.create(student_id: 2, classroom_id: 1)
-Schedule.create(student_id: 3, classroom_id: 1)
-Schedule.create(student_id: 4, classroom_id: 1)
 Schedule.create(student_id: 5, classroom_id: 1)
 
 Assignment.create(description: Faker::Hipster.sentence, classroom_id:1)

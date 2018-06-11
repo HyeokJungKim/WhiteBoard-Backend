@@ -1,6 +1,8 @@
-class TeacherSerializer < ActiveModel::Serializer
+class StudentSerializer < ActiveModel::Serializer
   attributes :id, :firstName, :lastName
-  has_many :classrooms, if: -> {!isStudent?}
+  has_many :grades, if: -> {!isStudent?}
+
+  has_many :classrooms, if: -> {isStudent?}
 
   def isStudent?
     if scope
