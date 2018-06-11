@@ -1,9 +1,19 @@
 class ClassroomsController < ApplicationController
-  def students
+  def assignments
     @classroom = Classroom.find(params[:id])
-    @assignments = @classroom.assignments
-    @students = @classroom.students
-    render json: @students.to_json(:only => [:id, :firstName, :lastName], :include => [:grades, :assignments])
+    @assignment = Assignment.new(description: params[:description], classroom: @classroom)
+    if(@assignment.save)
+      @students = @classroom.students
+      @students.each do |student|
+        Grade.create(grade: 0, student: student, assignment: @assignment)
+        student.save
+      end
+      @classroom.save
+      @teacher = @classroom.teacher
+      render json: @teacher, include: '**'
+    else
+      render json: {errors: "Must include a valid description"}
+    end
   end
 
 end

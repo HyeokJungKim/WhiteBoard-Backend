@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   post '/studentLogin', to: 'students#login'
 
 
+  post '/classrooms/:id/assignments', to: 'classrooms#assignments'
+
   get '/teachers/:id/classrooms', to: 'teachers#classesAndAssignments'
   get '/students/:id/classrooms', to: 'students#classesAndAssignments'
-  get '/classrooms/:id/students', to: 'classrooms#students'
 end
