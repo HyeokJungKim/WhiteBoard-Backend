@@ -1,4 +1,5 @@
 class ClassroomsController < ApplicationController
+
   def assignments
     @classroom = Classroom.find(params[:id])
     @assignment = Assignment.new(description: params[:description], classroom: @classroom)
@@ -12,7 +13,7 @@ class ClassroomsController < ApplicationController
       @teacher = @classroom.teacher
       render json: @teacher, include: '**'
     else
-      render json: {errors: "Must include a valid description"}
+      render json: {error: "Must include a valid description."}
     end
   end
 
