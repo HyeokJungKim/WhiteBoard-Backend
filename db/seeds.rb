@@ -1,6 +1,6 @@
 School.create(name:"Flatiron School", password: "123")
-Teacher.create(firstName:"Test", lastName:"Test", username: "1", password:"1", school_id: 1)
-Student.create(firstName: "Abc", lastName: "Def", username:"1", password:"1")
+Teacher.create(firstName:"Eric", lastName:"Kim", username: "1", password:"1", school_id: 1)
+Student.create(firstName: "Eric", lastName: "Kim", username:"1", password:"1", isAccount: true)
 
 5.times do
   Student.create(firstName:Faker::Name.first_name, lastName:Faker::Name.last_name)
@@ -16,7 +16,7 @@ Schedule.create(student_id: 1, classroom_id: 3)
 Schedule.create(student_id: 2, classroom_id: 1)
 Schedule.create(student_id: 5, classroom_id: 1)
 
-Assignment.create(description: Faker::Hipster.word, classroom_id:1)
+Assignment.create(description: "Final Project", classroom_id:1)
 
 Grade.create(grade: 100, student_id: 1, assignment_id: 1)
 Grade.create(grade: 40, student_id: 2, assignment_id: 1)
