@@ -1,9 +1,16 @@
 class StudentsController < ApplicationController
-  
+
   def create
     @student = Student.new(student_params)
+    @student.username = "#{@student.firstName}#{@student.lastName}#{Sysrandom.hex(3)}"
     if(@student.save)
-      render json: tokenForAccount(@student)
+      @classroom = Classroom.find(params["class_id"])
+      Schedule.create(student: @student, classroom: @classroom)
+      @classroom.assignments.each do |assignment|
+        Grade.create(grade: 0, student: @student, assignment: assignment)
+      end
+      @classroom.save
+      render json: @classroom, include: '**'
     else
       render json: {errors: @student.errors.full_messages}
     end
@@ -30,7 +37,7 @@ class StudentsController < ApplicationController
 
   private
   def student_params
-    params.permit(:firstName, :lastName ,:username, :password)
+    params.require(:student).permit(:firstName, :lastName)
   end
 
 end

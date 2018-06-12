@@ -11,7 +11,7 @@ class ClassroomsController < ApplicationController
       end
       @classroom.save
       @teacher = @classroom.teacher
-      render json: @teacher, include: '**'
+      render json: @classroom, include: '**'
     else
       render json: {error: "Must include a valid description."}
     end
