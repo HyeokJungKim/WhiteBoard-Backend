@@ -7,7 +7,7 @@ Student.create(firstName: "Abc", lastName: "Def", username:"1", password:"1")
 end
 
 5.times do
-  Classroom.create(name:Faker::Hipster.word, teacher_id: 1)
+  Classroom.create(name:Faker::Educator.course, teacher_id: 1)
 end
 
 Schedule.create(student_id: 1, classroom_id: 1)

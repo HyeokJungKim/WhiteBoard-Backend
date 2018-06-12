@@ -1,5 +1,5 @@
 class StudentSerializer < ActiveModel::Serializer
-  attributes :id, :firstName, :lastName
+  attributes :id, :firstName, :lastName, :username, :isAccount
   has_many :grades, if: -> {!isStudent?}
 
   has_many :classrooms, if: -> {isStudent?}
