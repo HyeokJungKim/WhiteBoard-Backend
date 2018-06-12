@@ -1,8 +1,9 @@
 class Classroom < ApplicationRecord
-  has_secure_password
 
   has_many :schedules
   belongs_to :teacher
+  delegate :school, :to => :teacher, :allow_nil => true
+
   has_many :students, through: :schedules
   has_many :assignments
 

@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
-    t.string "password_digest"
     t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +50,12 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
     t.index ["student_id"], name: "index_schedules_on_student_id"
   end
 
+  create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "firstName"
     t.string "lastName"
@@ -67,8 +72,10 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
     t.string "lastName"
     t.string "username"
     t.string "password_digest"
+    t.bigint "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_teachers_on_school_id"
   end
 
   add_foreign_key "assignments", "classrooms"
@@ -77,4 +84,5 @@ ActiveRecord::Schema.define(version: 2018_06_05_141735) do
   add_foreign_key "grades", "students"
   add_foreign_key "schedules", "classrooms"
   add_foreign_key "schedules", "students"
+  add_foreign_key "teachers", "schools"
 end

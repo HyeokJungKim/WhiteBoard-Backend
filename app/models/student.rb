@@ -10,7 +10,7 @@ class Student < ApplicationRecord
   validates :firstName, presence: true
   validates :lastName, presence: true
   validates :username, presence: true, uniqueness: true, :if => :is_account?
-  validates :password, presence:true, :if => :is_account?
+  validates :password, presence: true, :if => :is_account?
 
   def is_account?
     self.is_account

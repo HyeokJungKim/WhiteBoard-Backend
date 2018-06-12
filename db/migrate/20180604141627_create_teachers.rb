@@ -5,7 +5,8 @@ class CreateTeachers < ActiveRecord::Migration[5.2]
       t.string :lastName
       t.string :username
       t.string :password_digest
-
+      t.references :school, index: true, foreign_key: true
+      
       t.timestamps
     end
   end

@@ -1,4 +1,5 @@
-Teacher.create(firstName:"Test", lastName:"Test", username: "1", password:"1")
+School.create(name:"Flatiron School")
+Teacher.create(firstName:"Test", lastName:"Test", username: "1", password:"1", school_id: 1)
 Student.create(firstName: "Abc", lastName: "Def", username:"1", password:"1")
 
 5.times do
@@ -6,7 +7,7 @@ Student.create(firstName: "Abc", lastName: "Def", username:"1", password:"1")
 end
 
 5.times do
-  Classroom.create(name:Faker::Hipster.word, teacher_id: 1, password:"123")
+  Classroom.create(name:Faker::Hipster.word, teacher_id: 1)
 end
 
 Schedule.create(student_id: 1, classroom_id: 1)

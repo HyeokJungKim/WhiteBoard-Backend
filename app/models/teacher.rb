@@ -1,6 +1,7 @@
 class Teacher < ApplicationRecord
   has_secure_password
 
+  belongs_to :school
   has_many :classrooms
   has_many :students, through: :classrooms
   has_many :assignments, through: :classrooms
