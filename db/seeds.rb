@@ -1,4 +1,4 @@
-School.create(name:"Flatiron School")
+School.create(name:"Flatiron School", password: "123")
 Teacher.create(firstName:"Test", lastName:"Test", username: "1", password:"1", school_id: 1)
 Student.create(firstName: "Abc", lastName: "Def", username:"1", password:"1")
 
