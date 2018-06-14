@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :teachers, only: [:show, :create]
   resources :students, only: [:create]
   resources :classrooms, only: [:create]
-  resources :grades, only: [:show, :edit]
+  resources :grades, only: [:show, :update]
 
   post '/teacherLogin', to: 'teachers#login'
   post '/studentLogin', to: 'students#login'
