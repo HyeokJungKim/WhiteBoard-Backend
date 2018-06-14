@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :teachers, only: [:show, :create]
-  resources :students, only: [:create]
+  resources :students, only: [:show, :create]
   resources :classrooms, only: [:create]
   resources :grades, only: [:show, :update]
 

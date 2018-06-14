@@ -1,8 +1,14 @@
 class StudentsController < ApplicationController
+  def show
+    @student = Student.find(params[:id])
+    render json: @student, include: '**', scope: {'student': true}
+  end
 
   def create
     @student = Student.new(student_params)
-    @student.username = "#{@student.firstName}#{@student.lastName}#{Sysrandom.hex(3)}"
+    randomVar = Sysrandom.hex(3)
+    @student.username = "#{@student.firstName}#{@student.lastName}#{randomVar}"
+
     if(@student.save)
       @classroom = Classroom.find(params["class_id"])
       Schedule.create(student: @student, classroom: @classroom)
