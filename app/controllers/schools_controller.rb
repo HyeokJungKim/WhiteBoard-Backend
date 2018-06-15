@@ -8,8 +8,9 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     if(@school.authenticate(params[:password]))
       @students = @school.students
-      byebug
-      # FIXME: AFIOSJAIO
+      render json: @students.uniq
+    else
+      render json: {error: "You have entered the incorrect password"}
     end
   end
 

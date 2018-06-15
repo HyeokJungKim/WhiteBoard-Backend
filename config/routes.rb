@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   post '/schools/:id/students', to: 'schools#getStudents'
   post '/classrooms/:id/assignments', to: 'classrooms#assignments'
+  post '/classrooms/:id/students', to: 'classrooms#students'
 
   get '/teachers/:id/classrooms', to: 'teachers#classesAndAssignments'
   get '/students/:id/classrooms', to: 'students#classesAndAssignments'
