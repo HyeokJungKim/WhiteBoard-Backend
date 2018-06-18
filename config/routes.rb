@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   post '/teacherLogin', to: 'teachers#login'
   post '/studentLogin', to: 'students#login'
+  post '/validateSchool/:id', to: 'schools#validateSchool'
 
   post '/schools/:id/students', to: 'schools#getStudents'
   post '/classrooms/:id/assignments', to: 'classrooms#assignments'

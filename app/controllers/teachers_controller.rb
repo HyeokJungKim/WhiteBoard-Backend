@@ -20,7 +20,7 @@ class TeachersController < ApplicationController
 
   def create
     @teacher = Teacher.new(teacher_params)
-    @teacher.school = School.first
+    @teacher.school = School.find(params[:schoolID])
     if(@teacher.save)
       render json: tokenForAccount(@teacher)
     else
