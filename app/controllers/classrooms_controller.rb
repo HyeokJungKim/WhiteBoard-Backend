@@ -1,5 +1,17 @@
 class ClassroomsController < ApplicationController
 
+  def create
+    @classroom = Classroom.create(class_params)
+    @teacher = Teacher.find(params[:teacherID])
+    @classroom.teacher = @teacher
+    if(@classroom.save)
+      render json: @teacher, include: '**'
+    else
+      render json: {error: "Name cannot be blank."}
+    end
+  end
+
+
   def assignments
     @classroom = Classroom.find(params[:id])
     @assignment = Assignment.new(description: params[:description], classroom: @classroom)
@@ -29,6 +41,11 @@ class ClassroomsController < ApplicationController
       @classroom.save
     end
     render json: @classroom, include: '**'
+  end
+
+  private
+  def class_params
+    params.permit(:name)
   end
 
 end

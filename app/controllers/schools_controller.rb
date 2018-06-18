@@ -6,7 +6,6 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
-    byebug
     if(@school.save)
       render json: {valid: true}
     else
