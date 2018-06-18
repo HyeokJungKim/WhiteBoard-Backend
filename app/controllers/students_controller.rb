@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
     randomVar = Sysrandom.hex(3)
     @student.username = "#{@student.firstName}#{@student.lastName}#{randomVar}"
-
+    @student.password = randomVar
     if(@student.save)
       @classroom = Classroom.find(params["class_id"])
       Schedule.create(student: @student, classroom: @classroom)
@@ -17,6 +17,17 @@ class StudentsController < ApplicationController
       end
       @classroom.save
       render json: @classroom, include: '**'
+    else
+      render json: {errors: @student.errors.full_messages}
+    end
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    @student.update(student_update)
+    @student.update(isAccount: true)
+    if(@student.save)
+      render json: @student, include: '**', scope: {'student': true}
     else
       render json: {errors: @student.errors.full_messages}
     end
@@ -44,6 +55,10 @@ class StudentsController < ApplicationController
   private
   def student_params
     params.require(:student).permit(:firstName, :lastName)
+  end
+
+  def student_update
+    params.permit(:username, :password)
   end
 
 end
