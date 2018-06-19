@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :teachers, only: [:show, :create]
   resources :students, only: [:show, :create, :update]
-  resources :assignments, only: [:update]
+  resources :assignments, only: [:show, :update, :destroy]
   resources :classrooms, only: [:create]
   resources :grades, only: [:show, :update]
   resources :schools, only: [:index, :create]
@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   get '/teachers/:id/classrooms', to: 'teachers#classesAndAssignments'
   get '/students/:id/classrooms', to: 'students#classesAndAssignments'
 
-  delete '/classrooms/:id/assignments', to: 'classrooms#deleteAssignment'
+  patch '/assignments/:id/update', to: 'assignments#updateAssignment'
+  patch '/assignments/:id/removePDF', to: 'assignments#removePDF'
 end

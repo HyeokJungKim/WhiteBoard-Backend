@@ -3,7 +3,10 @@ class AssignmentSerializer < ActiveModel::Serializer
   has_many :grades, if: -> {isStudent?}
 
   def pdf
-    object.pdf.path if object.pdf.present?
+    if object.pdf.present?
+      str = object.pdf.path.split('/public')[1]
+      return "http://localhost:8000#{str}"
+    end
   end
 
   def isStudent?
