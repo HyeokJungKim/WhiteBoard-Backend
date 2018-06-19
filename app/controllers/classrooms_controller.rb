@@ -43,6 +43,10 @@ class ClassroomsController < ApplicationController
     render json: @classroom, include: '**'
   end
 
+  def deleteAssignment
+    byebug
+  end
+
   private
   def class_params
     params.permit(:name)

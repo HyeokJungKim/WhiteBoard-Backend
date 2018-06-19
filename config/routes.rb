@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
   get '/teachers/:id/classrooms', to: 'teachers#classesAndAssignments'
   get '/students/:id/classrooms', to: 'students#classesAndAssignments'
+
+  delete '/classrooms/:id/assignments', to: 'classrooms#deleteAssignment'
 end
