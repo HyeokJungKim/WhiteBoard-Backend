@@ -7,13 +7,13 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     randomVar = Sysrandom.hex(3)
-    @student.username = "#{@student.firstName}#{@student.lastName}#{randomVar}"
+    @student.username = "#{@student.firstName}#{@student.lastName} #{randomVar}"
     @student.password = randomVar
     if(@student.save)
       @classroom = Classroom.find(params["class_id"])
       Schedule.create(student: @student, classroom: @classroom)
       @classroom.assignments.each do |assignment|
-        Grade.create(grade: 0, student: @student, assignment: assignment)
+        Grade.create(grade: Faker::Number.between(0, 100), student: @student, assignment: assignment)
       end
       @classroom.save
       render json: @classroom, include: '**'

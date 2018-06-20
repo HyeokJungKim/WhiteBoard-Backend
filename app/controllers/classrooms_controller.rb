@@ -18,7 +18,7 @@ class ClassroomsController < ApplicationController
     if(@assignment.save)
       @students = @classroom.students
       @students.each do |student|
-        Grade.create(grade: 0, student: student, assignment: @assignment)
+        Grade.create(grade: Faker::Number.between(0, 100), student: student, assignment: @assignment)
         student.save
       end
       @classroom.save
@@ -36,7 +36,7 @@ class ClassroomsController < ApplicationController
       @student = Student.find(id)
       Schedule.create(student: @student, classroom: @classroom)
       @classroom.assignments.each do |assignment|
-        Grade.create(grade: 0, student: @student, assignment: assignment)
+        Grade.create(grade: Faker::Number.between(0, 100), student: @student, assignment: assignment)
       end
       @classroom.save
     end
