@@ -43,8 +43,9 @@ class ClassroomsController < ApplicationController
     render json: @classroom, include: '**'
   end
 
-  def deleteAssignment
-    byebug
+  def getGrades
+    @classroom = Classroom.find(params[:id])
+    render json: @classroom, include: '**', scope: {'student': true}
   end
 
   private
