@@ -38,7 +38,6 @@ class AssignmentsController < ApplicationController
   end
 
   def removePDF
-    byebug
     @assignment = Assignment.find(params[:id])
     @assignment.pdf = nil
     if(@assignment.save)
