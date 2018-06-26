@@ -1,4 +1,8 @@
 School.create(name:"Flatiron School", password: "123")
+School.create(name:"App Academy", password: "123")
+School.create(name:"General Assembly", password: "123")
+School.create(name:"Fullstack Academy", password: "123")
+
 Teacher.create(firstName:"Dr.", lastName:"Kim", username: "1", password:"1", school_id: 1)
 Student.create(firstName: "Eric", lastName: "Kim", username:"1", password:"1", isAccount: true)
 
