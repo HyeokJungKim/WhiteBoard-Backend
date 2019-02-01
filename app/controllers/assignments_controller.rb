@@ -38,7 +38,7 @@ class AssignmentsController < ApplicationController
   end
 
   def removePDF
-    
+
     @assignment = Assignment.find(params[:id])
     @assignment.pdf = nil
     if(@assignment.save)
