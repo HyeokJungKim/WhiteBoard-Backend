@@ -6,7 +6,7 @@ class Student < ApplicationRecord
   has_many :teachers, through: :classrooms
   has_many :schools, through: :teachers
   has_many :assignments, through: :classrooms
-  has_many :grades
+  has_many :grades, -> { order(:id) }
 
   validates :firstName, presence: true, length: { maximum: 32 }
   validates :lastName, presence: true, length: { maximum: 32 }
