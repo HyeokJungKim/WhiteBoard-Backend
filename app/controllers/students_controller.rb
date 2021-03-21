@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
       @classroom = Classroom.find(params["class_id"])
       Schedule.create(student: @student, classroom: @classroom)
       @classroom.assignments.each do |assignment|
-        Grade.create(grade: Faker::Number.between(0, 100), student: @student, assignment: assignment)
+        Grade.create(grade: rand(100), student: @student, assignment: assignment)
       end
       @classroom.save
       render json: @classroom, include: '**'

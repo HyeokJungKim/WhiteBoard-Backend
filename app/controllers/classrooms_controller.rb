@@ -18,7 +18,7 @@ class ClassroomsController < ApplicationController
     if(@assignment.save)
       @students = @classroom.students
       @students.each do |student|
-        Grade.create(grade: Faker::Number.between(0, 100), student: student, assignment: @assignment)
+        Grade.create(grade: rand(100), student: student, assignment: @assignment)
         student.save
       end
       @classroom.save
