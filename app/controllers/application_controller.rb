@@ -19,7 +19,7 @@ class ApplicationController < ActionController::API
     token = request.headers["Authorization"]
     begin
       decoded = JWT.decode(token, password, true, {algorithm: 'HS256'})
-    rescue JWT::VerificationError
+    rescue JWT::VerificationError, JWT::DecodeError
       return nil
     end
     decoded
