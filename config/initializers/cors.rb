@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://whiteboard-gradebook.netlify.app/'
+    origins ['https://whiteboard-gradebook.netlify.app', "http://localhost:3001"]
 
     resource '*',
       headers: :any,
