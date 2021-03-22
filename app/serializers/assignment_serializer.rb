@@ -4,8 +4,8 @@ class AssignmentSerializer < ActiveModel::Serializer
 
   def pdf
     if object.pdf.present?
-      str = object.pdf.path.split('/public')[1]
-      return "http://localhost:8000#{str}"
+      str = object.pdf.path
+      return "https://gradebook-pdf.s3.us-east-2.amazonaws.com/#{str}"
     end
   end
 
