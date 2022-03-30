@@ -1155,7 +1155,8 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pg (1.2.3)
-    puma (3.12.6)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-cors (1.1.1)
@@ -1229,7 +1230,7 @@ DEPENDENCIES
   mini_magick (~> 4.8)
   paperclip (~> 6.0.0)
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 4.3)
   rack-cors
   rails (~> 5.2.0)
   spring
